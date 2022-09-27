@@ -1,7 +1,7 @@
 import random
 import datetime
 
-def quiz(aps,apl,apd):
+def quiz(aps,apl,apd):   #クイズを出題する関数
     print("対象文字")
     print(aps)
     #print("欠損文字")
@@ -10,8 +10,8 @@ def quiz(aps,apl,apd):
     print(apd)
     
 
-def kaito(apl):
-    st = datetime.datetime.now()
+def kaito(apl):   #解答を入力する関数
+    st = datetime.datetime.now()   #開始時間
     ans_num = input("欠損文字はいくつあるでしょうか？")
     if ans_num == len(apl):
         print("正解です。それでは、具体的な欠損文字を一つずつ入力してください。")
@@ -26,8 +26,8 @@ def kaito(apl):
                 break
     else:
         print("不正解です。またチャレンジしてください")
-    ed = datetime.datetime.now()
-    print((ed-st).seconds)
+    ed = datetime.datetime.now()   #終了時間
+    print((ed-st).seconds)   #経過時間
 
 if __name__ =="__main__":
     alp_lst = []
