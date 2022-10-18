@@ -40,6 +40,7 @@ def main_proc():
 
 
 
+
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("迷えるこうかとん") #1
