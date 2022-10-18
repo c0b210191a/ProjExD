@@ -25,8 +25,8 @@ def make_maze(yoko, tate):
     return maze_lst
 
 def show_maze(canvas, maze_lst):
-    a =  ["#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])]
-    b =  ["#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])]
+    a =  ["#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])]  #色　ランダム
+    b =  ["#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])]  #色　ランダム
     color = [a[0], b[0]]
     for y in range(len(maze_lst)):
         for x in range(len(maze_lst[y])):
