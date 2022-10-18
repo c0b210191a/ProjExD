@@ -38,7 +38,7 @@ c = 0
 num = list(range(9,-1,-1))
 ope = ["+","-","*","/","**"]     #四則演算と二乗
 for i,n in enumerate(num+ope,1):
-    button = tk.Button(root,text=f"{n}",font=("Times New Roman",30),width=4,height=2)
+    button = tk.Button(root,text=f"{n}",font=("Times New Roman",30),bg="white",width=4,height=2)
     button.bind("<1>",button_click)     #左クリックで関数を呼び出す
     button.grid(row=r,column=c)     #ボタンの配置位置を決める
     c += 1

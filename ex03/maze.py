@@ -1,7 +1,6 @@
 import tkinter as tk
 import maze_maker as mm
-import random
-import tkinter.messagebox as tkm
+
 
 def key_down(event):
     global key
@@ -33,17 +32,12 @@ def main_proc():
             mx += 1
         if key == "Right":
             mx -= 1
-        run_once = 0
-        tkm.showinfo("危険","進めません")
         
+
 
     canvas.coords("こうかとん",cx,cy)
     root.after(100,main_proc)
 
-def kouka(event):
-    global fi
-    fi = f"fig/{random.randint(0,9)}.png"
-    root.after(100,kouka)
 
 
 
@@ -58,9 +52,12 @@ if __name__ == "__main__":
 
     mm.show_maze(canvas,m_ls) #10
 
+
     
     fi = f"fig/{random.randint(0,9)}.png" #追加 画像ランダム
     tori = tk.PhotoImage(file=fi)
+
+
     mx, my =1,1
     cx, cy = 300, 400
     canvas.create_image(cx,cy,image=tori,tag="こうかとん") #3
