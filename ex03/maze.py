@@ -1,6 +1,15 @@
 import tkinter as tk
 import tkinter.messagebox as tkm
 
+def key_down(event):
+    global key
+    key = event.keysym
+
+def key_up():
+    global key
+    key = ""
+
+
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("迷えるこうかとん") #1
@@ -14,4 +23,8 @@ if __name__ == "__main__":
 
     key = "" #4
 
-    root.mainloop()
+    root.bind("<KeyPress>",key_down) #5
+
+    root.bind("<KeyRelease>",key_up)
+
+    root.mainloop() 
