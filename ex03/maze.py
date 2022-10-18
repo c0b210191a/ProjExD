@@ -33,10 +33,10 @@ def main_proc():
             mx += 1
         if key == "Right":
             mx -= 1
-        tkm.showinfo("危険","進めません")
+        tkm.showinfo("危険","進めません") #メッセージボックス追加
 
     canvas.coords("こうかとん",cx,cy)
-    root.after(80,main_proc)
+    root.after(80,main_proc) #数値変更
 
 
 
@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
     mm.show_maze(canvas,m_list) #10
 
-    file_random = f"fig/{random.randint(0,9)}.png"
+    file_random = f"fig/{random.randint(0,9)}.png"  #画像ランダム化
     tori = tk.PhotoImage(file=file_random)
     mx, my =1,1
     cx, cy = 300, 400
