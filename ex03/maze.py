@@ -36,7 +36,7 @@ def main_proc():
         tkm.showinfo("危険","進めません")
 
     canvas.coords("こうかとん",cx,cy)
-    root.after(100,main_proc)
+    root.after(80,main_proc)
 
 
 
