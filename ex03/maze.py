@@ -1,6 +1,7 @@
 import tkinter as tk
 import maze_maker as mm
 
+
 def key_down(event):
     global key
     key = event.keysym
@@ -31,9 +32,12 @@ def main_proc():
             mx += 1
         if key == "Right":
             mx -= 1
+        
+
 
     canvas.coords("こうかとん",cx,cy)
     root.after(100,main_proc)
+
 
 
 
@@ -48,7 +52,12 @@ if __name__ == "__main__":
 
     mm.show_maze(canvas,m_ls) #10
 
-    tori = tk.PhotoImage(file="fig/6.png")
+
+    
+    fi = f"fig/{random.randint(0,9)}.png" #追加 画像ランダム
+    tori = tk.PhotoImage(file=fi)
+
+
     mx, my =1,1
     cx, cy = 300, 400
     canvas.create_image(cx,cy,image=tori,tag="こうかとん") #3
