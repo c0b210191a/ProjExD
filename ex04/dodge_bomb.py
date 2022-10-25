@@ -5,13 +5,13 @@ import tkinter as tk
 import tkinter.messagebox as tkm
 import datetime
 
-def tkobj(t1,t2):
+def tkobj(t1,t2):  #ゲームのプレイ時間を表示する関数
     root = tk.Tk()
     root.title("pygame")
     root.geometry("300x100")
 
-    time = (t2-t1).seconds  #時間保持
-    label = tk.Label(root,text=f"{time}秒")  #時間を表示する
+    time = (t2-t1).seconds  #プレイ時間を計算する
+    label = tk.Label(root,text=f"{time}秒",font = ("",50))  #時間を表示する
     label.pack()
 
     root.mainloop()
@@ -29,7 +29,7 @@ def check_bound(obj_rct,scr_rct):  #7  画面の外に出ないようにする�
     return yoko,tate
 
 def main(pic="fig/6.png",num = 1):
-    st = datetime.datetime.now()
+    st = datetime.datetime.now() #開始時刻
     pg.display.set_caption("逃げろ！こうかとん")   #1
     scrn_sfc = pg.display.set_mode((1600,900))
     scrn_rct = scrn_sfc.get_rect()
@@ -108,8 +108,8 @@ def main(pic="fig/6.png",num = 1):
 
         #8
         if tori_rct.colliderect(draw_rct):
-            ed = datetime.datetime.now()
-            tkobj(st,ed)
+            ed = datetime.datetime.now() #終了時刻
+            tkobj(st,ed)  #ウィンドウ表示
             main()
             return
             
