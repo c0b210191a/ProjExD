@@ -50,7 +50,7 @@ def main(pic="fig/6.png",num = 1):
     draw_rct = draw_sfc.get_rect()
     drawx = scrn_rct.width
     drawy = scrn_rct.height
-    draw_rct.centerx, draw_rct.centery = random.randint(0,drawx-100), random.randint(0,drawy-50)
+    draw_rct.centerx, draw_rct.centery = random.randint(0,drawx), random.randint(0,drawy)
 
     #6
     vx,vy = 1, 1
