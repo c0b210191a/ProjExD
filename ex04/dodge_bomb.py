@@ -11,7 +11,7 @@ def tkobj(t1,t2):  #ゲームのプレイ時間を表示する関数
     root.geometry("300x100")
 
     time = (t2-t1).seconds  #プレイ時間を計算する
-    label = tk.Label(root,text=f"{time}秒",font = ("",50))  #時間を表示する
+    label = tk.Label(root,text=f"{time}秒",font = ("",50))  #時間を表示する 修正文字サイズ
     label.pack()
 
     root.mainloop()
