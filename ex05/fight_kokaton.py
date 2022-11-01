@@ -73,7 +73,7 @@ class Change:  #新クラス　キー入力
     def __init__(self):
         self.num = random.randint(0,9) #こうかとん画像　ランダム
         self.size = random.randint(2,8)  #爆弾サイズ　ランダム
-        self.file_lst = ["海.jpg","砂漠.jpg","チェス.jpg","金魚.jpg","森.jpg"]  #背景画像ランダム
+        self.file_lst = ["海.jpg","砂漠.jpg","チェス.jpg","金魚.jpg","森.jpg"]  #背景画像ランダム　　#修正 #17
         
     def kimg(self):
         file = f"fig/{self.num}.png"  #追加機能　画像ランダム選出
