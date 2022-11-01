@@ -75,7 +75,6 @@ class Change:  #新クラス　キー入力
         self.size = random.randint(2,8)  #爆弾サイズ　ランダム
         self.file_lst = ["bg1.jpg","bg2.jpg","bg3.jpg","bg4.jpg","bg5.jpg"]
         
-
     def kimg(self):
         file = f"fig/{self.num}.png"  #追加機能　画像ランダム選出
         main(kokaton=file)
@@ -161,7 +160,7 @@ def main(kokaton="fig/6.png",size=1,bg="fig/pg_bg.jpg"):
 
         #score = 0   #被弾回数
         if kkt.rct.colliderect(bkd.rct): 
-            boom_sound.play()
+            boom_sound.play()   #被弾時に効果音
             #score += 1
             fonto = pg.font.Font(None,400)
             txt = fonto.render("Explosion",True,(0,0,0))
