@@ -159,13 +159,13 @@ def main(kokaton="fig/6.png",size=1,bg="fig/pg_bg.jpg"):
         kkt.update(scr)
         bkd.update(scr)
 
-        score = 0
+        #score = 0   #被弾回数
         if kkt.rct.colliderect(bkd.rct): 
             boom_sound.play()
-            score += 1
-            fonto = pg.font.Font(None,80)
-            txt = fonto.render(str(score),True,(0,0,0))
-            scr.sfc.blit(txt,(300,200))
+            #score += 1
+            fonto = pg.font.Font(None,400)
+            txt = fonto.render("Explosion",True,(0,0,0))
+            scr.sfc.blit(txt,(100,200))
             
 
         pg.display.update() 
