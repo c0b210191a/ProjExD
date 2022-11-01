@@ -73,19 +73,18 @@ class Change:  #新クラス　キー入力
     def __init__(self):
         self.num = random.randint(0,9) #こうかとん画像　ランダム
         self.size = random.randint(2,8)  #爆弾サイズ　ランダム
-        self.file_lst = ["bg1.jpg","bg2.jpg","bg3.jpg","bg4.jpg","bg5.jpg"]
+        self.file_lst = ["bg1.jpg","bg2.jpg","bg3.jpg","bg4.jpg","bg5.jpg"]  #背景画像ランダム
         
     def kimg(self):
         file = f"fig/{self.num}.png"  #追加機能　画像ランダム選出
         main(kokaton=file)
 
-    def bomb(self):
+    def bomb(self):    #追加機能　爆弾サイズ変更
         main(size=self.size)
 
-    def bgimg(self):
+    def bgimg(self):    #追加機能　背景画像変更
         bg_file = f"fig/{random.choice(self.file_lst)}"
         main(bg=bg_file) 
-
 
 
 def check_bound(obj_rct, scr_rct):
@@ -100,6 +99,7 @@ def check_bound(obj_rct, scr_rct):
     if obj_rct.top < scr_rct.top or scr_rct.bottom < obj_rct.bottom: 
         tate = -1
     return yoko, tate
+
 
 main_dir = os.path.split(os.path.abspath(__file__))[0]
 
