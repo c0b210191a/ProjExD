@@ -148,7 +148,7 @@ class Change:  #新クラス　キー入力
         main(bg=bg_file) 
 
     def ranbro(self):
-        ls_bro = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+        ls_bro = [[] for _ in range(18)]
         for i in range(18):
             for j in range(32):
                 ls_bro[i].append(randint(0,1))
@@ -270,7 +270,7 @@ def main(kokaton="fig/6.png",size=5,bg="fig/海.jpg",count = 0,ls = [],mana = 0)
                 label = tk.Label(root,text="Clear",font=("",50))
             else:
                 label = tk.Label(root,text=f"you lose",font=("",50))
-            label.pack()@
+            label.pack()
             root.mainloop()
             return
 
