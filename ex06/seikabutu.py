@@ -3,13 +3,13 @@ import sys
 from random import randint
 import random
 import os
-import tkinter
-import math
 from pygame.locals import *
+import time
+import tkinter as tk
 
 WIDTH = 1600
 HEIGHT = 900
-BLOCK_LOCAT = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+BLOCK_LOCAT1 = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
@@ -27,6 +27,25 @@ BLOCK_LOCAT = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]
+
+BLOCK_LOCAT2 = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+               [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+               [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+               [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+               [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+               [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+               [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+               [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+               [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+               [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+               [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+               [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+               [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+               [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+               [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+               [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
 
 
 
@@ -128,6 +147,13 @@ class Change:  #新クラス　キー入力
         bg_file = f"fig/{random.choice(self.file_lst)}"
         main(bg=bg_file) 
 
+    def ranbro(self):
+        ls_bro = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+        for i in range(18):
+            for j in range(32):
+                ls_bro[i].append(random.randint(0,1))
+        main(ls = ls_bro,mana = 1)
+
 
 def check_bound(obj_rct, scr_rct):     #移動
     """
@@ -144,9 +170,9 @@ def check_bound(obj_rct, scr_rct):     #移動
 
 def check(obj_rct,scr_rct):   #ブロックと爆弾衝突の判定
     yoko, tate = 1, 1
-    if obj_rct.left == scr_rct.left-1500 or scr_rct.right == obj_rct.right+50:
+    if obj_rct.left+20 == scr_rct.left or scr_rct.right == obj_rct.right+1550:
         yoko = -1
-    if obj_rct.top == scr_rct.top-800 or scr_rct.bottom == obj_rct.bottom+50:
+    if obj_rct.top+20 == scr_rct.top or scr_rct.bottom == obj_rct.top+850:
         tate = -1
     return yoko,tate
 
@@ -164,7 +190,7 @@ def load_sound(file):    #音声の追加
     return None
 
 
-def main(kokaton="fig/6.png",size=1,bg="fig/pg_bg.jpg"):
+def main(kokaton="fig/6.png",size=5,bg="fig/海.jpg",count = 0,ls = [],mana = 0):
     scr = Screen("逃げろ！こうかとん",(WIDTH, HEIGHT),bg)
     kkt = Bird(kokaton,2.0,(900, 400))    
     bkd = Bomb((255, 0, 0),size,(+1,+1),scr)
@@ -178,6 +204,8 @@ def main(kokaton="fig/6.png",size=1,bg="fig/pg_bg.jpg"):
         pg.mixer.music.play(-1)
 
     clock = pg.time.Clock()
+
+    bad = 0
     while True:
         scr.blit()
         
@@ -188,7 +216,7 @@ def main(kokaton="fig/6.png",size=1,bg="fig/pg_bg.jpg"):
                     if event.key == K_ESCAPE:
                         return
             if event.type == pg.KEYDOWN and event.key ==pg.K_F1:  #リセットボタン ゲームを初期化する
-                main()
+                main(count=8000)
                 return
             if event.type == pg.KEYDOWN and event.key ==pg.K_F2:    #追加機能　画像ランダム選出
                 chg.kimg()
@@ -199,26 +227,64 @@ def main(kokaton="fig/6.png",size=1,bg="fig/pg_bg.jpg"):
             if event.type == pg.KEYDOWN and event.key ==pg.K_F4: #追加機能　背景画像変更
                 chg.bgimg()  
                 return     
+            if event.type == pg.KEYDOWN and event.key ==pg.K_F5:
+                chg.ranbro()
+                return
 
         kkt.update(scr)
         bkd.update(scr,bcr)
-        for i,bl in enumerate(BLOCK_LOCAT):
-            for j in range(32):   #ブロック追加
-                if bl[j] == 1:
-                    bcr.update(j,i,scr)
 
+        count += 1
+
+
+        if count >= 4000:
+            bkd.update(scr,bcr)
+        if count >= 8000:
+            bkd.update(scr,bcr)
+
+
+        if count >= 2000:
+            for i,bl in enumerate(BLOCK_LOCAT1):
+                for j in range(32):   #ブロック追加
+                    if bl[j] == 1:
+                            bcr.update(j,i,scr)
+                            
+        if count >= 6000:
+            for i,bl in enumerate(BLOCK_LOCAT2):
+                for j in range(32):   #ブロック追加
+                    if bl[j] == 1:
+                            bcr.update(j,i,scr)
+
+        if mana == 1:
+            for i,bl in enumerate(ls):
+                    for j in range(32):   #ブロック追加
+                        if bl[j] == 1:
+                                bcr.update(j,i,scr)
         
+        if count >= 10000:
+            root = tk.Tk()
+            root.title("game")
+            root.geometry("1000x400")
+            root.resizable(True,True)
+            if bad == 0:
+                label = tk.Label(root,text="Clear",font=("",50))
+            else:
+                label = tk.Label(root,text=f"you lose",font=("",50))
+            label.pack()
+            root.mainloop()
+            return
 
         if kkt.rct.colliderect(bkd.rct): 
             boom_sound.play()   #被弾時に効果音
             fonto = pg.font.Font(None,400)
             txt = fonto.render("Explosion",True,(0,0,0))
             scr.sfc.blit(txt,(100,200))
+            bad += 1
             
         pg.display.update() 
         clock.tick(1000)
-        
 
+    
 
 if __name__ == "__main__":
     pg.init() # 初期化
