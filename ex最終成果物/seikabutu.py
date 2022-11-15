@@ -132,8 +132,8 @@ class Bomb:     #爆弾のクラス
 class Change:  #新クラス　キー入力
 
     def __init__(self):
-        self.num = random.randint(0,9) #こうかとん画像　ランダム
-        self.size = random.randint(2,8)  #爆弾サイズ　ランダム
+        self.num = randint(0,9) #こうかとん画像　ランダム
+        self.size = randint(2,8)  #爆弾サイズ　ランダム
         self.file_lst = ["海.jpg","砂漠.jpg","チェス.jpg","金魚.jpg","森.jpg"]  #背景画像ランダム　　#修正 #17
         
     def kimg(self):
@@ -151,7 +151,7 @@ class Change:  #新クラス　キー入力
         ls_bro = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
         for i in range(18):
             for j in range(32):
-                ls_bro[i].append(random.randint(0,1))
+                ls_bro[i].append(randint(0,1))
         main(ls = ls_bro,mana = 1)
 
 
@@ -270,7 +270,7 @@ def main(kokaton="fig/6.png",size=5,bg="fig/海.jpg",count = 0,ls = [],mana = 0)
                 label = tk.Label(root,text="Clear",font=("",50))
             else:
                 label = tk.Label(root,text=f"you lose",font=("",50))
-            label.pack()
+            label.pack()@
             root.mainloop()
             return
 
