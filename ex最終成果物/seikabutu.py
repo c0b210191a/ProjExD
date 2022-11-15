@@ -172,7 +172,7 @@ def check(obj_rct,scr_rct):   #ブロックと爆弾衝突の判定
     yoko, tate = 1, 1
     if obj_rct.left+20 == scr_rct.left or scr_rct.right == obj_rct.right+1550:
         yoko = -1
-    if obj_rct.top+20 == scr_rct.top or scr_rct.bottom == obj_rct.top+850:
+    if obj_rct.top+20 == scr_rct.top or scr_rct.bottom == obj_rct.bottom+850:   #修正　担当：C0B21171
         tate = -1
     return yoko,tate
 
