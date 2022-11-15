@@ -9,6 +9,7 @@ from pygame.locals import *
 
 WIDTH = 1600
 HEIGHT = 900
+#ブロックの位置： ブロックあり1　なし0
 BLOCK_LOCAT = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
@@ -30,17 +31,19 @@ BLOCK_LOCAT = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 
 
+#(注)　self.○○はクラスが異なれば、同じsfcやrctでも全くの別物
+
 class Screen:    #画面のクラス
 
-    def __init__(self,title,wh,file):
-        pg.display.set_caption(title)
+    def __init__(self,title,wh,file): #画面のサイズ。画像の読み込み
+        pg.display.set_caption(title) 
         self.sfc = pg.display.set_mode(wh)
         self.rct = self.sfc.get_rect()
         self.bgi_sfc = pg.image.load(file)
         self.bgi_rct = self.bgi_sfc.get_rect()
 
     def blit(self):
-        self.sfc.blit(self.bgi_sfc, self.bgi_rct) 
+        self.sfc.blit(self.bgi_sfc, self.bgi_rct) #引数になっているものをディスプレイに適用
 
 
 class Bird:     #プレイヤーのクラス
@@ -51,16 +54,16 @@ class Bird:     #プレイヤーのクラス
         pg.K_RIGHT: [+1, 0],
     }
 
-    def __init__(self,file,size,location):
+    def __init__(self,file,size,location): #プレイヤー画像読み込み、サイズ調整
         self.sfc = pg.image.load(file)
         self.sfc = pg.transform.rotozoom(self.sfc, 0, size)
         self.rct = self.sfc.get_rect()
         self.rct.center = location
 
     def blit(self,scr:Screen):
-        scr.sfc.blit(self.sfc,self.rct)
+        scr.sfc.blit(self.sfc,self.rct) # スクリーンに貼り付け 
 
-    def update(self,scr:Screen):
+    def update(self,scr:Screen): #キーを押されたときのプレイヤーの動き
         key_states = pg.key.get_pressed()
         for key, delta in self.key_delta.items():
             if key_states[key]:
@@ -73,16 +76,16 @@ class Bird:     #プレイヤーのクラス
 
 
 class Block:    #ブロック追加
-    def __init__(self):
+    def __init__(self): #時間経過したときにブロック追加する時に用いる
         self.sfc = pg.image.load("fig/block.jpg")
         self.sfc = pg.transform.scale(self.sfc,(50,50))
         self.rct = self.sfc.get_rect()
         
 
     def blit(self,scr:Screen):
-        scr.sfc.blit(self.sfc,self.rct)
+        scr.sfc.blit(self.sfc,self.rct) #スクリーンに貼り付け
 
-    def update(self,x,y,scr:Screen):
+    def update(self,x,y,scr:Screen): #ブロックの位置調整
         self.rct.center = 25+50*x, 25+50*y
         self.blit(scr)
 
@@ -94,20 +97,20 @@ class Bomb:     #爆弾のクラス
         self.sfc.set_colorkey((0, 0, 0)) # 四隅の黒い部分を透過させる
         pg.draw.circle(self.sfc, color, (radius*10, radius*10), radius*10) # 爆弾用の円を描く
         self.rct = self.sfc.get_rect()
-        self.rct.centerx = randint(0, scr.rct.width)
-        self.rct.centery = randint(0, scr.rct.height)
-        self.vx, self.vy = vxy
+        self.rct.centerx = randint(0, scr.rct.width)#画面移動に対応
+        self.rct.centery = randint(0, scr.rct.height)#画面移動に対応
+        self.vx, self.vy = vxy #画面移動のx,y座標
 
     def blit(self,scr:Screen):
-        scr.sfc.blit(self.sfc,self.rct)
+        scr.sfc.blit(self.sfc,self.rct) #スクリーンに貼り付け
     
     def update(self,scr:Screen,bcr:Block):
-        self.rct.move_ip(self.vx, self.vy)
-        yoko, tate = check_bound(self.rct, scr.rct)
+        self.rct.move_ip(self.vx, self.vy)#円が移動
+        yoko, tate = check_bound(self.rct, scr.rct)#壁の判定
         y, t = check(self.rct, bcr.rct)
         self.vx *= yoko*y
         self.vy *= tate*t
-        self.blit(scr)
+        self.blit(scr)#更新したscrを貼り付け
 
 
 class Change:  #新クラス　キー入力
